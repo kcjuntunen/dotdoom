@@ -39,7 +39,7 @@
   "The location of local git repos.")
 
 (defvar york--repo-name-property-name
-  "REPO"
+  "Source"
   "The property under which we store and retrieve repo names.")
 
 ;;
