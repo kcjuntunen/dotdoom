@@ -1,6 +1,6 @@
 #+TITLE:   york-mode
 #+DATE:    April 17, 2021
-#+SINCE:   <replace with next tagged release version>
+#+SINCE:   <2021-04-17 Sat>
 #+STARTUP: inlineimages nofold
 
 * Table of Contents :TOC_3:noexport:
@@ -18,6 +18,8 @@
 
 # If this module has no maintainers, then...
 # This module has no dedicated maintainers.
+
+Below is stuff that some doodad in doom added automatically. It's all tagged with "noexport", but GitHub doesn't care about that.
 
 ** Module Flags :noexport:
 + =+flag1= A short description of what this flag does and what it might need
