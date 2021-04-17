@@ -1,4 +1,29 @@
-;;; $DOOMDIR/york-mode.el -*- lexical-binding: t; -*-
+;;; york-mode.el --- a minor mode to contain functions for work -*- lexical-binding: t; coding: utf-8-unix; -*-
+
+;; Copyright (C) 2021 K. C. Juntunen
+
+;; Author   : K. C. Juntunen <juntunen.kc@gmail.com>
+;; URL      :
+;; Package-Version:
+;; Version  : 0.1
+;; Keywords :
+
+;; This file is NOT part of GNU Emacs.
+
+;;; Commentary:
+
+
+;;; Code:
+
+;;;###autoload
+(define-minor-mode york-mode
+  "A container for handy, York-related functions."
+  :lighter " Ŷ"
+  :keymap (let ((map (make-sparse-keymap)))
+            (define-key map (kbd "C-c r") 'york-get-request-data)
+            (define-key map (kbd "C-c g") 'york-open-local-repo-name)
+            (define-key map (kbd "C-c G") 'york-open-remote-repo-name)
+            map))
 
 (defvar york-request-looker-upper-path
   "D:/Source/Repos/Viewer.Etc/Experimental/bin/Debug/Experimental.exe"
@@ -64,19 +89,24 @@
 ;; Bindings
 
 ;; TODO: Figure out why this works everywherem instead of only in org.
-(map! :leader
-      :after evil-org
-      :map evil-org-mode-map
-      :mode org
-      (:prefix ("y" . "York")
-       (:prefix ("r" . "Requests")
-        :desc "Insert Request Data at point"
-        :n "g" #'york-get-request-data)
-       (:prefix ("o" . "Open associated solution")
-        :desc "Open associated solution in default program from local repo"
-        :n "l" #'york-open-local-repo-name)
-       (:prefix ("o" . "Open associated repo")
-        :desc "Open associated remote repo in Magit"
-        :n "r" #'york-open-remote-repo-name)))
+;; (map! :leader
+;;       :after evil-org
+;;       :map evil-org-mode-map
+;;       :mode org
+;;       (:prefix ("y" . "York")
+;;        (:prefix ("r" . "Requests")
+;;         :desc "Insert Request Data at point"
+;;         :n "g" #'york-get-request-data)
+;;        (:prefix ("o" . "Open associated solution")
+;;         :desc "Open associated solution in default program from local repo"
+;;         :n "l" #'york-open-local-repo-name)
+;;        (:prefix ("o" . "Open associated repo")
+;;         :desc "Open associated remote repo in Magit"
+;;         :n "r" #'york-open-remote-repo-name)))
+
+;;;###autoload
+(add-hook 'org-mode-hook 'york-mode)
+
+(message "york-mode loaded")
 
 (provide 'york-mode)
