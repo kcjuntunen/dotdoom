@@ -131,7 +131,7 @@
                         ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
                         ("WIP" ("WAITING") ("CANCELLED") ("HOLD"))
                         ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
-                kc/refile-file (concat kc/agenda-dir "/refile.org")
+                kc/refile-file (concat org-directory "/refile.org")
                 kc/diary-file (concat org-directory "/diary.org")
                 kc/notes-file (concat org-directory "/notes.org")
                 org-capture-templates
