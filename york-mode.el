@@ -33,12 +33,12 @@
 
 (defun york--get-local-repo-name ()
   "Get the local repo for the associated code."
-  (let ((repo-name (org-entry-get (point) york--repo-name-property-name)))
+  (let ((repo-name (org-entry-get (point) york--repo-name-property-name t)))
     (concat york-local-repo-path repo-name "/" repo-name ".sln")))
 
 (defun york--get-remote-repo-name ()
   "Get the remote repo for the associated code."
-  (let ((repo-name (org-entry-get (point) york--repo-name-property-name)))
+  (let ((repo-name (org-entry-get (point) york--repo-name-property-name t)))
     (concat york-remote-repo-path repo-name ".git")))
 
 (defun york-open-local-repo-name ()
