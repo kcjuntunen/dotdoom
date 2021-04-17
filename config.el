@@ -379,8 +379,9 @@
   "Load stuff I don't want on Github."
   (interactive)
   (let ((personal-file (expand-file-name "~/.personal.el")))
-    (when (file-exists-p personal-file)
-      (message "Loading s%..." personal-file)
+    (if (not (file-exists-p personal-file))
+        (error (format "`%s' does not exist." personal-file))
+      (message "Loading %s..." personal-file)
       (load-file personal-file))))
 
 (load-personal-file)
