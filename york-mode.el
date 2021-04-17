@@ -63,9 +63,20 @@
 
 ;; Bindings
 
+;; TODO: Figure out why this works everywherem instead of only in org.
 (map! :leader
-      (:prefix-map ("y" . "York")
+      :after evil-org
+      :map evil-org-mode-map
+      :mode org
+      (:prefix ("y" . "York")
        (:prefix ("r" . "Requests")
-        :desc "Insert Request Data at point" "g" #'york-get-request-data)))
+        :desc "Insert Request Data at point"
+        :n "g" #'york-get-request-data)
+       (:prefix ("o" . "Open associated solution")
+        :desc "Open associated solution in default program from local repo"
+        :n "l" #'york-open-local-repo-name)
+       (:prefix ("o" . "Open associated repo")
+        :desc "Open associated remote repo in Magit"
+        :n "r" #'york-open-remote-repo-name)))
 
 (provide 'york-mode)
