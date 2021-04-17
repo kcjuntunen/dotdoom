@@ -45,13 +45,21 @@
   "Open thing in the property named `york--repo-name-property-name'."
   (interactive)
   (let ((thing-to-open (york--get-local-repo-name)))
-    (org-open-file thing-to-open nil)))
+    (if (not (file-exists-p thing-to-open))
+        (error (format "File `%s' not found" thing-to-open))
+      (org-open-file thing-to-open nil))))
 
 (defun york-open-remote-repo-name ()
   "Open thing in the property named `york--repo-name-property-name'."
   (interactive)
-   (let ((thing-to-open (york--get-remote-repo-name)))
-     (org-open-file thing-to-open)))
+  (let ((here default-directory)
+        (thing-to-open (york--get-remote-repo-name)))
+    (if (not (file-exists-p thing-to-open))
+        (error (format "Directory `%s' not found" thing-to-open))
+      (save-excursion
+        (cd thing-to-open)
+        (magit-status)))
+    (cd here)))
 
 ;; Bindings
 
