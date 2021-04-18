@@ -1,4 +1,4 @@
-#+TITLE:   york-mode
+#+TITLE:   .doom.d
 #+DATE:    April 17, 2021
 #+SINCE:   <2021-04-17 Sat>
 #+STARTUP: inlineimages nofold
@@ -6,12 +6,11 @@
 * Table of Contents :TOC_3:noexport:
 - [[#description][Description]]
   - [[#maintainers][Maintainers]]
-  - [[#hacks][Hacks]]
 
 * Description
 # A summary of what this module does.
 
-+ A place for my work-related stuff.
++ My config.
 
 ** Maintainers
 + @kcjuntunen (Author)
