@@ -384,9 +384,15 @@
       (message "Loading %s..." personal-file)
       (load-file personal-file))))
 
-(load-personal-file)
+(defun add-missing-info-dir ()
+  "Add default info directory to `Info-default-directory-list'"
+  (let ((default-Info-directory (car Info-default-directory-list)))
+    (if (member  default-Info-directory Info-directory-list)
+        (message "%s is already in `Info-directory-list'" default-Info-directory)
+      (add-to-list 'Info-directory-list (car Info-default-directory-list)))))
 
-(add-to-list 'Info-directory-list "c:/Users/k.c.juntunen/emax64/share/info/")
+(load-personal-file)
+(add-missing-info-dir)
 
 (load-file (concat (file-truename "~/.doom.d/york-mode.el")))
 
