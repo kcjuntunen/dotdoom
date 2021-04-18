@@ -386,6 +386,8 @@
 
 (load-personal-file)
 
+(add-to-list 'Info-directory-list "c:/Users/k.c.juntunen/emax64/share/info/")
+
 (load-file (concat (file-truename "~/.doom.d/york-mode.el")))
 
 (server-start)
