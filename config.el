@@ -32,10 +32,18 @@
 (defvar not-win (eq system-type 'gnu/linux)
   "If NOT-WIN is non-nil, then we're not in MS-Windows.")
 
+(defvar at-work (string-equal (getenv "HOSTNAME") "Athos")
+  "Athos is the machine at work.")
+
+(defvar org-directory-root (if at-work
+                               "C:/Users/K.C.Juntunen/OneDrive/org/"
+                             "D:/OneDrive/org/")
+  "The root upon which to build my org directory")
+
 (setq org-directory
       (if not-win
           "~/Dropbox/org"
-        (concat "D:/OneDrive/org/" (format-time-string "%Y"))))
+        (concat org-directory-root (format-time-string "%Y"))))
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
