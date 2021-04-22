@@ -215,6 +215,7 @@
                      (t
                       kw)))))
   (setq org-agenda-files kc/org-all-agenda-files)
+  (require 'time-stamp)
   (message "kc/set-up-org has been executed"))
 
 (after! org
