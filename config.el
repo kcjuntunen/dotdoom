@@ -149,7 +149,8 @@
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
-:Client: %^{Client}
+:ClientAccount: %^{ClientAccount}
+:TradingPartnerAccount: %^{TradingPartnerAccount}
 :END:\n  SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n"
                    :clock-in t :clock-resume t :prepend t)
                   ("p" "Phone call" entry
@@ -166,9 +167,11 @@
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
+:ClientAccount: %^{ClientAccount}
+:TradingPartnerAccount: %^{TradingPartnerAccount}
 :Prev_Loc: %K
 :END:
-:CLIPBOARD:\n#+begin_quote\n%x\n#+end_quote\n:END:\n" :clock-in t :clock-resume t)
+:CLIPBOARD:\n%x\n:END:\n" :clock-in t :clock-resume t)
                   ("s" "Source Note" entry
                    (file kc/refile-file)
                    "* %?
