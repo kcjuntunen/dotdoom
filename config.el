@@ -410,8 +410,8 @@
 
 (defun add-missing-info-dir ()
   "Add default info directory to `Info-default-directory-list'"
-  (let ((Info-directories (list "C:/Users/k.c.juntunen/emax64/share/info"
-                                 (car Info-default-directory-list))))
+  (let ((Info-directories `("C:/Users/k.c.juntunen/emax64/share/info"
+                            ,(car Info-default-directory-list))))
     (dolist (dir Info-directories)
       (if (member dir Info-directory-list)
           (message "%s is already in `Info-directory-list'" dir)
