@@ -415,7 +415,8 @@
     (dolist (dir Info-directories)
       (if (member dir Info-directory-list)
           (message "%s is already in `Info-directory-list'" dir)
-        (add-to-list 'Info-directory-list dir)))))
+        (add-to-list 'Info-directory-list dir)
+        (message "Added %s to `Info-directory-list'" dir)))))
 
 (load-personal-file)
 (add-missing-info-dir)
