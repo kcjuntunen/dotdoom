@@ -387,6 +387,18 @@
  (after! evil-snipe
    (evil-snipe-mode -1))
 
+(defun kc/org-check-agenda ()
+  "Peek at agenda."
+  (interactive)
+  (cond
+   ((derived-mode-p 'org-agenda-mode)
+    (if (window-parent) (delete-window) (bury-buffer)))
+   ((get-buffer "*Org Agenda*")
+    (switch-to-buffer "*Org Agenda*"))
+   (t (org-agenda nil "a"))))
+
+(define-key global-map (kbd "<f5>") 'my/org-check-agenda)
+
 (defun load-personal-file ()
   "Load stuff I don't want on Github."
   (interactive)
