@@ -21,9 +21,13 @@
   :lighter " Ŷ"
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map (kbd "C-c r") 'york-get-request-data)
+            (define-key map (kbd "C-c s") 'york-store-repo-name)
             (define-key map (kbd "C-c g") 'york-open-local-repo-name)
             (define-key map (kbd "C-c G") 'york-open-remote-repo-name)
-            map))
+            map)
+  (if york-mode
+      (message "york-mode activated")
+    (message "york-mode deactivated")))
 
 (defvar york-request-looker-upper-path
   "D:/Source/Repos/Viewer.Etc/Experimental/bin/Debug/Experimental.exe"
