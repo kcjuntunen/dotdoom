@@ -91,79 +91,79 @@
 
 (defun kc/set-up-org ()
   (setq-default
-                kc/org-all-agenda-files (directory-files
-                                         (expand-file-name org-directory) t org-agenda-file-regexp)
-                org-agenda-span 'day
-                org-fontify-quote-and-verse-blocks t
-                org-use-fast-todo-selection t
-                org-hide-emphasis-markers nil
-                org-treat-S-cursor-todo-selection-as-state-change nil
-                org-ellipsis "▽"
-                org-clock-continuously t
-                org-clock-out-remove-zero-time-clocks t
-                org-log-done 'time
-                org-refile-targets (quote ((nil :maxlevel . 1) (kc/org-all-agenda-files :maxlevel . 2)))
-                org-catch-invisible-edits 'smart
-                org-agenda-clockreport-parameter-plist
-                '(:link t :maxlevel 4 :fileskip0 t
-                  :properties ("ClientAccount" "TradingPartnerAccount" "Request" "Phase" "Task"))
-                org-deadline-warning-days 45
-                org-agenda-window-setup 'current-window
-                org-agenda-skip-scheduled-if-done t
-                org-agenda-skip-deadline-if-done t
-                org-agenda-skip-timestamp-if-done t
-                org-agenda-log-mode-items '(closed clock state)
-                org-columns-default-format
-                "%25ITEM(Task) %40Description %20Captured %10Effort(Effort){:} %10CLOCKSUM"
-                org-global-properties
-                (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
-                        ("STYLE_ALL" . "habit")))
-                org-todo-keywords
-                (quote ((sequence "TODO(t)" "WIP(n)" "|" "DONE(d)" "CANCELLED(c/!)")
-                        (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|"
-                                  "CANCELLED(c/!)" "PHONE" "MEETING")))
-                org-todo-keyword-faces
-                (quote (("TODO" :foreground "red" :weight bold)
-                        ("WIP" :foreground "blue" :weight bold)
-                        ("DONE" :foreground "forest green" :weight bold)
-                        ("WAITING" :foreground "orange" :weight bold)
-                        ("HOLD" :foreground "magenta" :weight bold)
-                        ("CANCELLED" :foreground "forest green" :weight bold)
-                        ("MEETING" :foreground "forest green" :weight bold)
-                        ("PHONE" :foreground "forest green" :weight bold)))
-                org-todo-state-tags-triggers
-                (quote (("CANCELLED" ("ARCHIVE" . t))
-                        ("WAITING" ("WAITING" . t))
-                        ("HOLD" ("WAITING") ("HOLD" . t))
-                        (done ("WAITING") ("HOLD"))
-                        ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-                        ("WIP" ("WAITING") ("CANCELLED") ("HOLD"))
-                        ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
-                kc/refile-file (concat org-directory "/refile.org")
-                kc/diary-file (concat org-directory "/diary.org")
-                kc/notes-file (concat org-directory "/notes.org")
-                org-capture-templates
-                '(("t" "todo" entry
-                   (file kc/refile-file)
-                   "* TODO %?
+   kc/org-all-agenda-files (directory-files
+                            (expand-file-name org-directory) t org-agenda-file-regexp)
+   org-agenda-span 'day
+   org-fontify-quote-and-verse-blocks t
+   org-use-fast-todo-selection t
+   org-hide-emphasis-markers nil
+   org-treat-S-cursor-todo-selection-as-state-change nil
+   org-ellipsis "▽"
+   org-clock-continuously t
+   org-clock-out-remove-zero-time-clocks t
+   org-log-done 'time
+   org-refile-targets (quote ((nil :maxlevel . 1) (kc/org-all-agenda-files :maxlevel . 2)))
+   org-catch-invisible-edits 'smart
+   org-agenda-clockreport-parameter-plist
+   '(:link t :maxlevel 4 :fileskip0 t
+     :properties ("ClientAccount" "TradingPartnerAccount" "Request" "Phase" "Task"))
+   org-deadline-warning-days 45
+   org-agenda-window-setup 'current-window
+   org-agenda-skip-scheduled-if-done t
+   org-agenda-skip-deadline-if-done t
+   org-agenda-skip-timestamp-if-done t
+   org-agenda-log-mode-items '(closed clock state)
+   org-columns-default-format
+   "%25ITEM(Task) %40Description %20Captured %10Effort(Effort){:} %10CLOCKSUM"
+   org-global-properties
+   (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
+           ("STYLE_ALL" . "habit")))
+   org-todo-keywords
+   (quote ((sequence "TODO(t)" "WIP(n)" "|" "DONE(d)" "CANCELLED(c/!)")
+           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|"
+                     "CANCELLED(c/!)" "PHONE" "MEETING")))
+   org-todo-keyword-faces
+   (quote (("TODO" :foreground "red" :weight bold)
+           ("WIP" :foreground "blue" :weight bold)
+           ("DONE" :foreground "forest green" :weight bold)
+           ("WAITING" :foreground "orange" :weight bold)
+           ("HOLD" :foreground "magenta" :weight bold)
+           ("CANCELLED" :foreground "forest green" :weight bold)
+           ("MEETING" :foreground "forest green" :weight bold)
+           ("PHONE" :foreground "forest green" :weight bold)))
+   org-todo-state-tags-triggers
+   (quote (("CANCELLED" ("ARCHIVE" . t))
+           ("WAITING" ("WAITING" . t))
+           ("HOLD" ("WAITING") ("HOLD" . t))
+           (done ("WAITING") ("HOLD"))
+           ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+           ("WIP" ("WAITING") ("CANCELLED") ("HOLD"))
+           ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
+   kc/refile-file (concat org-directory "/refile.org")
+   kc/diary-file (concat org-directory "/diary.org")
+   kc/notes-file (concat org-directory "/notes.org")
+   org-capture-templates
+   '(("t" "todo" entry
+      (file kc/refile-file)
+      "* TODO %?
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :ClientAccount: %^{ClientAccount}
 :TradingPartnerAccount: %^{TradingPartnerAccount}
 :END:\n  SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n"
-                   :clock-in t :clock-resume t :prepend t)
-                  ("p" "Phone call" entry
-                   (file kc/refile-file)
-                   "* PHONE %?
+      :clock-in t :clock-resume t :prepend t)
+     ("p" "Phone call" entry
+      (file kc/refile-file)
+      "* PHONE %?
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :Prev_Loc: %K
 :END:" :clock-in t :clock-resume t)
-                  ("i" "Interuption" entry
-                   (file kc/refile-file)
-                   "* %?
+     ("i" "Interuption" entry
+      (file kc/refile-file)
+      "* %?
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
@@ -172,51 +172,51 @@
 :Prev_Loc: %K
 :END:
 :CLIPBOARD:\n%x\n:END:\n" :clock-in t :clock-resume t)
-                  ("s" "Source Note" entry
-                   (file kc/refile-file)
-                   "* %?
+     ("s" "Source Note" entry
+      (file kc/refile-file)
+      "* %?
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :Prev_Loc: %K
 :END:
 #+begin_source %^{Language|conf|csharp|powershell|sgml|shell|sql}\n%x\n#+end_source\n" :clock-in t :clock-resume t)
-                  ("j" "Journal" entry
-                   (file+olp+datetree kc/diary-file)
-                   "* %?
+     ("j" "Journal" entry
+      (file+olp+datetree kc/diary-file)
+      "* %?
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :Category: %^{Entry type|Bible|Note|Journal}
 :END:" :clock-in t :clock-resume t)
-                  ("n" "Note" entry
-                   (file kc/notes-file)
-                   "* %? :NOTE:
+     ("n" "Note" entry
+      (file kc/notes-file)
+      "* %? :NOTE:
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :Prev_Loc: %K
 :END:" :clock-in t :clock-resume t)
-                  ("m" "Meeting" entry
-                   (file kc/notes-file)
-                   "* MEETING %?
+     ("m" "Meeting" entry
+      (file kc/notes-file)
+      "* MEETING %?
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :Prev_Loc: %K
 :END:" :clock-in t :clock-resume t)
-                  ("b" "Bookmark" entry
-                   (file+headline kc/notes-file "Bookmarks")
-                   "* %?\n:PROPERTIES:\n:Captured: %U\n:END:\n\n" :empty-lines 1))
-                org-clock-in-switch-to-state
-                (defun kc/clock-in-to-wip (kw)
-                  "Switch from TODO to WIP when clocking in."
-                  (when (not (and (boundp 'org-capture-mode) org-capture-mode))
-                    (cond
-                     ((member (org-get-todo-state) (list "TODO"))
-                      "WIP")
-                     (t
-                      kw)))))
+     ("b" "Bookmark" entry
+      (file+headline kc/notes-file "Bookmarks")
+      "* %?\n:PROPERTIES:\n:Captured: %U\n:END:\n\n" :empty-lines 1))
+   org-clock-in-switch-to-state
+   (defun kc/clock-in-to-wip (kw)
+     "Switch from TODO to WIP when clocking in."
+     (when (not (and (boundp 'org-capture-mode) org-capture-mode))
+       (cond
+        ((member (org-get-todo-state) (list "TODO"))
+         "WIP")
+        (t
+         kw)))))
   (setq org-agenda-files kc/org-all-agenda-files)
   (require 'time-stamp)
   (message "kc/set-up-org has been executed"))
@@ -384,8 +384,8 @@
                  (org-tags-match-list-sublevels nil))))
          )))
 
- (after! evil-snipe
-   (evil-snipe-mode -1))
+(after! evil-snipe
+  (evil-snipe-mode -1))
 
 (defun kc/org-check-agenda ()
   "Peek at agenda."
