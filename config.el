@@ -397,7 +397,7 @@
     (switch-to-buffer "*Org Agenda*"))
    (t (org-agenda nil "a"))))
 
-(define-key global-map (kbd "<f5>") 'my/org-check-agenda)
+(define-key global-map (kbd "<f5>") 'kc/org-check-agenda)
 
 (defun load-personal-file ()
   "Load stuff I don't want on Github."
