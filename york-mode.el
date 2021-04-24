@@ -94,17 +94,20 @@
 
 ;; TODO: Figure out why this works everywherem instead of only in org.
 ;; (map! :leader
-;;       :after evil-org
-;;       :map evil-org-mode-map
-;;       :mode org
+;;       :after york-mode
+;;       :map york-mode-map
+;;       :mode york-mode
 ;;       (:prefix ("y" . "York")
 ;;        (:prefix ("r" . "Requests")
 ;;         :desc "Insert Request Data at point"
 ;;         :n "g" #'york-get-request-data)
-;;        (:prefix ("o" . "Open associated solution")
+;;        (:prefix ("s" . "Associated solution")
+;;         :desc "Associate solution in default program from local repo"
+;;         :n "s" #'york-store-repo-name)
+;;        (:prefix ("s" . "Associated solution")
 ;;         :desc "Open associated solution in default program from local repo"
 ;;         :n "l" #'york-open-local-repo-name)
-;;        (:prefix ("o" . "Open associated repo")
+;;        (:prefix ("s" . "Associated solution")
 ;;         :desc "Open associated remote repo in Magit"
 ;;         :n "r" #'york-open-remote-repo-name)))
 
