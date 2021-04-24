@@ -18,7 +18,7 @@
 ;;;###autoload
 (define-minor-mode york-mode
   "A container for handy, York-related functions."
-  :lighter " Ŷ"
+  :lighter " ☥"
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map (kbd "C-c r") 'york-get-request-data)
             (define-key map (kbd "C-c s") 'york-store-repo-name)
