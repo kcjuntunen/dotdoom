@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-solarized-dark)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -93,12 +93,13 @@
   (setq-default
    kc/org-all-agenda-files (directory-files
                             (expand-file-name org-directory) t org-agenda-file-regexp)
+   org-startup-folded 'fold
    org-agenda-span 'day
    org-fontify-quote-and-verse-blocks t
    org-use-fast-todo-selection t
    org-hide-emphasis-markers nil
    org-treat-S-cursor-todo-selection-as-state-change nil
-   org-ellipsis "▽"
+   org-ellipsis " ▼ "
    org-clock-continuously t
    org-clock-out-remove-zero-time-clocks t
    org-log-done 'time
