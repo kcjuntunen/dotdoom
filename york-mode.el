@@ -29,22 +29,36 @@
       (message "york-mode activated")
     (message "york-mode deactivated")))
 
-(defvar york-request-looker-upper-path
+
+(defcustom york-request-looker-upper-path
   "D:/Source/Repos/Viewer.Etc/Experimental/bin/Debug/Experimental.exe"
   ;; "D:/Source/C#-Production/Viewer/Experimental/bin/Debug/Experimental.exe"
-  "The program that pulls in Projects/Phases/Tasks in Org format.")
+  "The program that pulls in Projects/Phases/Tasks in Org format."
+  :type 'string
+  :group 'york)
 
-(defvar york-remote-repo-path
+(defcustom york-remote-repo-path
   "G:/"
-  "The location of remote git repos.")
+  "The location of remote git repos."
+  :type 'string
+  :group 'york)
 
-(defvar york-local-repo-path
+(defcustom york-local-repo-path
   "D:/Source/Repos/"
-  "The location of local git repos.")
+  "The location of local git repos."
+  :type 'string
+  :group 'york)
 
-(defvar york--repo-name-property-name
+(defcustom york--repo-name-property-name
   "Source"
-  "The property under which we store and retrieve repo names.")
+  "The property under which we store and retrieve repo names."
+  :type 'string
+  :group 'york)
+
+(defgroup york nil
+  "Settings for `york-mode'."
+  :prefix "york-"
+  :group york-mode)
 
 ;;
 
