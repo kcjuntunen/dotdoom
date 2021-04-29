@@ -422,6 +422,7 @@
 (load-personal-file)
 (add-missing-info-dir)
 
+(load-file (file-truename "~/.doom.d/abbrevs.el"))
 (load-file (concat (file-truename "~/.doom.d/york-mode.el")))
 
 (server-start)
