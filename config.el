@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-solarized-dark)
+(setq doom-theme 'doom-one-light)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -120,7 +120,7 @@
    (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
            ("STYLE_ALL" . "habit")))
    org-todo-keywords
-   (quote ((sequence "TODO(t)" "WIP(n)" "|" "DONE(d)" "CANCELLED(c/!)")
+   (quote ((sequence "TODO(t)" "WIP(n)" "|" "DELEGATED(g)" "DONE(d)" "CANCELLED(c/!)")
            (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|"
                      "CANCELLED(c/!)" "PHONE" "MEETING")))
    org-todo-keyword-faces
