@@ -17,15 +17,10 @@
 ;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
 ;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Victor Mono" :size 16 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Calibri" :size 24))
-
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one-light)
+(setq doom-theme nil)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -34,6 +29,17 @@
 
 (defvar at-work (string-equal (getenv "HOSTNAME") "Mercury")
   "Mercury is the machine at work.")
+
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two:
+
+(defvar kc/vp-font (if not-win
+                     "IBM Plex Serif Text"
+                   "Calibri")
+  "My variable pitch font varies based on my OS.")
+
+(setq doom-font (font-spec :family "Victor Mono" :size 16 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family kc/vp-font :size 24))
 
 (defvar org-directory-root (if at-work
                                "C:/Users/K.C.Juntunen/OneDrive/org/"
