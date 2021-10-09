@@ -32,8 +32,8 @@
 (defvar not-win (eq system-type 'gnu/linux)
   "If NOT-WIN is non-nil, then we're not in MS-Windows.")
 
-(defvar at-work (string-equal (getenv "HOSTNAME") "Athos")
-  "Athos is the machine at work.")
+(defvar at-work (string-equal (getenv "HOSTNAME") "Mercury")
+  "Mercury is the machine at work.")
 
 (defvar org-directory-root (if at-work
                                "C:/Users/K.C.Juntunen/OneDrive/org/"
