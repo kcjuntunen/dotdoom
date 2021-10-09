@@ -34,22 +34,22 @@
 ;; font string. You generally only need these two:
 
 (defvar kc/vp-font (if not-win
-                     "IBM Plex Serif Text"
-                   "Calibri")
+		       "IBM Plex Serif Text"
+		     "Calibri")
   "My variable pitch font varies based on my OS.")
 
 (setq doom-font (font-spec :family "Victor Mono" :size 16 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family kc/vp-font :size 24))
 
 (defvar org-directory-root (if at-work
-                               "C:/Users/K.C.Juntunen/OneDrive/org/"
-                             "D:/OneDrive/org/")
+			       "C:/Users/K.C.Juntunen/OneDrive/org/"
+			     "D:/OneDrive/org/")
   "The root upon which to build my org directory")
 
 (setq org-directory
       (if not-win
-          "~/Dropbox/org"
-        (concat org-directory-root (format-time-string "%Y"))))
+	  "~/Dropbox/org"
+	(concat org-directory-root (format-time-string "%Y"))))
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -79,18 +79,19 @@
 
 (defun kc/set-up-emacs ()
   (setq-default blink-cursor-delay .2
-                blink-cursor-interval .2
-                blink-cursor-blinks 10000
-                indent-tabs-mode nil
-                scroll-step 1
-                sentence-end-double-space nil
-                scroll-margin 0
-                scroll-conservatively 100000
-                scroll-preserve-screen-position 1
-                show-paren-delay 0
-                make-backup-files nil
-                auto-save-default nil
-                inhibit-startup-screen t)
+		blink-cursor-interval .2
+		blink-cursor-blinks 10000
+		tab-width 4
+		indent-tabs-mode t
+		scroll-step 1
+		sentence-end-double-space nil
+		scroll-margin 0
+		scroll-conservatively 100000
+		scroll-preserve-screen-position 1
+		show-paren-delay 0
+		make-backup-files nil
+		auto-save-default nil
+		inhibit-startup-screen t)
   (blink-cursor-mode))
 
 (setq org-agenda-file-regexp "\\`[^.].*\\.org\\'")
@@ -98,7 +99,7 @@
 (defun kc/set-up-org ()
   (setq-default
    kc/org-all-agenda-files (directory-files
-                            (expand-file-name org-directory) t org-agenda-file-regexp)
+			    (expand-file-name org-directory) t org-agenda-file-regexp)
    org-startup-folded 'fold
    org-agenda-span 'day
    org-fontify-quote-and-verse-blocks t
@@ -124,28 +125,28 @@
    "%25ITEM(Task) %40Description %20Captured %10Effort(Effort){:} %10CLOCKSUM"
    org-global-properties
    (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
-           ("STYLE_ALL" . "habit")))
+	   ("STYLE_ALL" . "habit")))
    org-todo-keywords
    (quote ((sequence "TODO(t)" "WIP(n)" "|" "DELEGATED(g)" "DONE(d)" "CANCELLED(c/!)")
-           (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|"
-                     "CANCELLED(c/!)" "PHONE" "MEETING")))
+	   (sequence "WAITING(w@/!)" "HOLD(h@/!)" "|"
+		     "CANCELLED(c/!)" "PHONE" "MEETING")))
    org-todo-keyword-faces
    (quote (("TODO" :foreground "red" :weight bold)
-           ("WIP" :foreground "blue" :weight bold)
-           ("DONE" :foreground "forest green" :weight bold)
-           ("WAITING" :foreground "orange" :weight bold)
-           ("HOLD" :foreground "magenta" :weight bold)
-           ("CANCELLED" :foreground "forest green" :weight bold)
-           ("MEETING" :foreground "forest green" :weight bold)
-           ("PHONE" :foreground "forest green" :weight bold)))
+	   ("WIP" :foreground "blue" :weight bold)
+	   ("DONE" :foreground "forest green" :weight bold)
+	   ("WAITING" :foreground "orange" :weight bold)
+	   ("HOLD" :foreground "magenta" :weight bold)
+	   ("CANCELLED" :foreground "forest green" :weight bold)
+	   ("MEETING" :foreground "forest green" :weight bold)
+	   ("PHONE" :foreground "forest green" :weight bold)))
    org-todo-state-tags-triggers
    (quote (("CANCELLED" ("ARCHIVE" . t))
-           ("WAITING" ("WAITING" . t))
-           ("HOLD" ("WAITING") ("HOLD" . t))
-           (done ("WAITING") ("HOLD"))
-           ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-           ("WIP" ("WAITING") ("CANCELLED") ("HOLD"))
-           ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
+	   ("WAITING" ("WAITING" . t))
+	   ("HOLD" ("WAITING") ("HOLD" . t))
+	   (done ("WAITING") ("HOLD"))
+	   ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+	   ("WIP" ("WAITING") ("CANCELLED") ("HOLD"))
+	   ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
    kc/refile-file (concat org-directory "/refile.org")
    kc/diary-file (concat org-directory "/diary.org")
    kc/notes-file (concat org-directory "/notes.org")
@@ -220,10 +221,10 @@
      "Switch from TODO to WIP when clocking in."
      (when (not (and (boundp 'org-capture-mode) org-capture-mode))
        (cond
-        ((member (org-get-todo-state) (list "TODO"))
-         "WIP")
-        (t
-         kw)))))
+	((member (org-get-todo-state) (list "TODO"))
+	 "WIP")
+	(t
+	 kw)))))
   (setq org-agenda-files kc/org-all-agenda-files)
   (require 'time-stamp)
   (message "kc/set-up-org has been executed"))
@@ -236,8 +237,8 @@
 ;; This is here so PLINK can find my private key.
 (eval-after-load "tramp"
   '(setf (cadr (assq 'tramp-login-args (cdr (assoc "plink" tramp-methods))))
-         '(("-l" "%u") ("-P" "%p") ("-i ~/.ssh/id_rsa.ppk") ("-ssh") ("-t") ("%h") ("\"")
-           ("env 'TERM=dumb' 'PROMPT_COMMAND=' 'PS1=#$ '") ("/bin/sh") ("\""))))
+	 '(("-l" "%u") ("-P" "%p") ("-i ~/.ssh/id_rsa.ppk") ("-ssh") ("-t") ("%h") ("\"")
+	   ("env 'TERM=dumb' 'PROMPT_COMMAND=' 'PS1=#$ '") ("/bin/sh") ("\""))))
 
 (setq org-roam-directory "D:/Dropbox/Dropbox/roam")
 
@@ -256,140 +257,140 @@
 
 (setq org-file-apps
       '((remote . emacs)
-        (auto-mode . emacs)
-        (directory . emacs)
-        ("\\.mm\\'" . default)
-        ("\\.x?html?\\'" . default)
-        ("\\.pdf\\'" . default)
-        ("\\.sln\\'" . default)))
+	(auto-mode . emacs)
+	(directory . emacs)
+	("\\.mm\\'" . default)
+	("\\.x?html?\\'" . default)
+	("\\.pdf\\'" . default)
+	("\\.sln\\'" . default)))
 
 (setq org-agenda-custom-commands
       '(("o" "Overview"
-         ((agenda "" ((org-agenda-span 'day)
-                      (org-super-agenda-groups
-                       '((:name "Today"
-                          :time-grid t
-                          :date today
-                          :todo "TODAY"
-                          :scheduled today
-                          :order 1)))))
-          (alltodo "" ((org-agenda-overriding-header "")
-                       (org-super-agenda-groups
-                        '((:name "Next to do"
-                           :todo "NEXT"
-                           :order 1)
-                          (:name "Important"
-                           :tag "Important"
-                           :priority "A"
-                           :order 1)
-                          (:name "Due Today"
-                           :deadline today
-                           :order 2)
-                          (:name "Due Soon"
-                           :deadline future
-                           :order 8)
-                          (:name "Overdue"
-                           :deadline past
-                           :face error
-                           :order 7)
-                          (:name "Work"
-                           :tag "Work"
-                           :order 3)
-                          (:name "Dissertation"
-                           :tag "Dissertation"
-                           :order 7)
-                          (:name "Emacs"
-                           :tag "Emacs"
-                           :order 13)
-                          (:name "Projects"
-                           :tag "Project"
-                           :order 14)
-                          (:name "Essay 1"
-                           :tag "Essay1"
-                           :order 2)
-                          (:name "Reading List"
-                           :tag "Read"
-                           :order 8)
-                          (:name "Work In Progress"
-                           :tag "WIP"
-                           :order 5)
-                          (:name "Blog"
-                           :tag "Blog"
-                           :order 12)
-                          (:name "Essay 2"
-                           :tag "Essay2"
-                           :order 3)
-                          (:name "Trivial"
-                           :priority<= "E"
-                           :tag ("Trivial" "Unimportant")
-                           :todo ("SOMEDAY" )
-                           :order 90)
-                          (:discard (:tag ("Chore" "Routine" "Daily"))))))))
-         )
-        ("w" "Master Agenda"
-         ((agenda ""
-                  ((org-agenda-span '1)
-                   (org-agenda-files (append (file-expand-wildcards "~/.org/gtd/*.org")))
-                   (org-agenda-start-day (org-today))))
-          (tags-todo "-CANCELLED/!"
-                     ((org-agenda-overriding-header "Stuck Projects")
-                      (org-agenda-skip-function 'bh/skip-non-stuck-projects)
-                      (org-agenda-sorting-strategy
-                       '(category-keep))))
-          (tags-todo "-HOLD-CANCELLED/!"
-                     ((org-agenda-overriding-header "Projects")
-                      (org-agenda-skip-function 'bh/skip-non-projects)
-                      (org-tags-match-list-sublevels 'indented)
-                      (org-agenda-sorting-strategy
-                       '(category-keep))))
-          (tags-todo "-CANCELLED/!NEXT"
-                     ((org-agenda-overriding-header (concat "Project Next Tasks"
-                                                            (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                ""
-                                                              " (including WAITING and SCHEDULED tasks)")))
-                      (org-agenda-skip-function 'nm/skip-projects-and-habits-and-single-tasks)
-                      (org-tags-match-list-sublevels t)
-                      (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
-                      (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
-                      (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
-                      (org-agenda-sorting-strategy
-                       '(todo-state-down effort-up category-keep))))
-          (tags-todo "-SOMEDAY-REFILE-CANCELLED-WAITING-HOLD/!"
-                     ((org-agenda-overriding-header (concat "Project Subtasks"
-                                                            (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                ""
-                                                              " (including WAITING and SCHEDULED tasks)")))
-                      (org-agenda-skip-function 'bh/skip-non-project-tasks)
-                      (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
-                      (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
-                      (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
-                      (org-agenda-sorting-strategy
-                       '(category-keep))))
-          (tags-todo "-SOMEDAY-REFILE-CANCELLED-/NEXT"
-                     ((org-agenda-overriding-header (concat "Standalone Tasks"
-                                                            (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                ""
-                                                              " (including WAITING and SCHEDULED tasks)")))
-                      (org-agenda-skip-function 'nm/skip-project-tasks)
-                      (org-agenda-todo-ignore-scheduled t)
-                      (org-agenda-todo-ignore-deadlines t)
-                      (org-agenda-todo-ignore-with-date t)
-                      (org-agenda-sorting-strategy
-                       '(category-keep))))
-          (tags-todo "SOMEDAY/"
-                     ((org-agenda-overriding-header (concat "Waiting and Postponed Tasks"
-                                                            (if bh/hide-scheduled-and-waiting-next-tasks
-                                                                ""
-                                                              " (including WAITING and SCHEDULED tasks)")))
-                      (org-agenda-skip-function 'nm/skip-scheduled)
-                      (org-tags-match-list-sublevels nil)
-                      (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
-                      (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)))
-          (tags "-REFILE/"
-                ((org-agenda-overriding-header "Tasks to Archive")
-                 (org-agenda-skip-function 'bh/skip-non-archivable-tasks)
-                 (org-tags-match-list-sublevels nil))))
-         )))
+	 ((agenda "" ((org-agenda-span 'day)
+		      (org-super-agenda-groups
+		       '((:name "Today"
+			  :time-grid t
+			  :date today
+			  :todo "TODAY"
+			  :scheduled today
+			  :order 1)))))
+	  (alltodo "" ((org-agenda-overriding-header "")
+		       (org-super-agenda-groups
+			'((:name "Next to do"
+			   :todo "NEXT"
+			   :order 1)
+			  (:name "Important"
+			   :tag "Important"
+			   :priority "A"
+			   :order 1)
+			  (:name "Due Today"
+			   :deadline today
+			   :order 2)
+			  (:name "Due Soon"
+			   :deadline future
+			   :order 8)
+			  (:name "Overdue"
+			   :deadline past
+			   :face error
+			   :order 7)
+			  (:name "Work"
+			   :tag "Work"
+			   :order 3)
+			  (:name "Dissertation"
+			   :tag "Dissertation"
+			   :order 7)
+			  (:name "Emacs"
+			   :tag "Emacs"
+			   :order 13)
+			  (:name "Projects"
+			   :tag "Project"
+			   :order 14)
+			  (:name "Essay 1"
+			   :tag "Essay1"
+			   :order 2)
+			  (:name "Reading List"
+			   :tag "Read"
+			   :order 8)
+			  (:name "Work In Progress"
+			   :tag "WIP"
+			   :order 5)
+			  (:name "Blog"
+			   :tag "Blog"
+			   :order 12)
+			  (:name "Essay 2"
+			   :tag "Essay2"
+			   :order 3)
+			  (:name "Trivial"
+			   :priority<= "E"
+			   :tag ("Trivial" "Unimportant")
+			   :todo ("SOMEDAY" )
+			   :order 90)
+			  (:discard (:tag ("Chore" "Routine" "Daily"))))))))
+	 )
+	("w" "Master Agenda"
+	 ((agenda ""
+		  ((org-agenda-span '1)
+		   (org-agenda-files (append (file-expand-wildcards "~/.org/gtd/*.org")))
+		   (org-agenda-start-day (org-today))))
+	  (tags-todo "-CANCELLED/!"
+		     ((org-agenda-overriding-header "Stuck Projects")
+		      (org-agenda-skip-function 'bh/skip-non-stuck-projects)
+		      (org-agenda-sorting-strategy
+		       '(category-keep))))
+	  (tags-todo "-HOLD-CANCELLED/!"
+		     ((org-agenda-overriding-header "Projects")
+		      (org-agenda-skip-function 'bh/skip-non-projects)
+		      (org-tags-match-list-sublevels 'indented)
+		      (org-agenda-sorting-strategy
+		       '(category-keep))))
+	  (tags-todo "-CANCELLED/!NEXT"
+		     ((org-agenda-overriding-header (concat "Project Next Tasks"
+							    (if bh/hide-scheduled-and-waiting-next-tasks
+								""
+							      " (including WAITING and SCHEDULED tasks)")))
+		      (org-agenda-skip-function 'nm/skip-projects-and-habits-and-single-tasks)
+		      (org-tags-match-list-sublevels t)
+		      (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
+		      (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
+		      (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
+		      (org-agenda-sorting-strategy
+		       '(todo-state-down effort-up category-keep))))
+	  (tags-todo "-SOMEDAY-REFILE-CANCELLED-WAITING-HOLD/!"
+		     ((org-agenda-overriding-header (concat "Project Subtasks"
+							    (if bh/hide-scheduled-and-waiting-next-tasks
+								""
+							      " (including WAITING and SCHEDULED tasks)")))
+		      (org-agenda-skip-function 'bh/skip-non-project-tasks)
+		      (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
+		      (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)
+		      (org-agenda-todo-ignore-with-date bh/hide-scheduled-and-waiting-next-tasks)
+		      (org-agenda-sorting-strategy
+		       '(category-keep))))
+	  (tags-todo "-SOMEDAY-REFILE-CANCELLED-/NEXT"
+		     ((org-agenda-overriding-header (concat "Standalone Tasks"
+							    (if bh/hide-scheduled-and-waiting-next-tasks
+								""
+							      " (including WAITING and SCHEDULED tasks)")))
+		      (org-agenda-skip-function 'nm/skip-project-tasks)
+		      (org-agenda-todo-ignore-scheduled t)
+		      (org-agenda-todo-ignore-deadlines t)
+		      (org-agenda-todo-ignore-with-date t)
+		      (org-agenda-sorting-strategy
+		       '(category-keep))))
+	  (tags-todo "SOMEDAY/"
+		     ((org-agenda-overriding-header (concat "Waiting and Postponed Tasks"
+							    (if bh/hide-scheduled-and-waiting-next-tasks
+								""
+							      " (including WAITING and SCHEDULED tasks)")))
+		      (org-agenda-skip-function 'nm/skip-scheduled)
+		      (org-tags-match-list-sublevels nil)
+		      (org-agenda-todo-ignore-scheduled bh/hide-scheduled-and-waiting-next-tasks)
+		      (org-agenda-todo-ignore-deadlines bh/hide-scheduled-and-waiting-next-tasks)))
+	  (tags "-REFILE/"
+		((org-agenda-overriding-header "Tasks to Archive")
+		 (org-agenda-skip-function 'bh/skip-non-archivable-tasks)
+		 (org-tags-match-list-sublevels nil))))
+	 )))
 
 (after! evil-snipe
   (evil-snipe-mode -1))
@@ -411,19 +412,19 @@
   (interactive)
   (let ((personal-file (expand-file-name "~/.personal.el")))
     (if (not (file-exists-p personal-file))
-        (error (format "`%s' does not exist." personal-file))
+	(error (format "`%s' does not exist." personal-file))
       (message "Loading %s..." personal-file)
       (load-file personal-file))))
 
 (defun add-missing-info-dir ()
   "Add default info directory to `Info-default-directory-list'"
   (let ((Info-directories `("C:/Users/k.c.juntunen/emax64/share/info"
-                            ,(car Info-default-directory-list))))
+			    ,(car Info-default-directory-list))))
     (dolist (dir Info-directories)
       (if (member dir Info-directory-list)
-          (message "%s is already in `Info-directory-list'" dir)
-        (add-to-list 'Info-directory-list dir)
-        (message "Added %s to `Info-directory-list'" dir)))))
+	  (message "%s is already in `Info-directory-list'" dir)
+	(add-to-list 'Info-directory-list dir)
+	(message "Added %s to `Info-directory-list'" dir)))))
 
 (load-personal-file)
 (add-missing-info-dir)
