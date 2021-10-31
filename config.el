@@ -74,6 +74,7 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(load-file "~/.doom.d/roman-numerals.el")
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
 
@@ -191,12 +192,13 @@
 #+begin_source %^{Language|conf|csharp|powershell|sgml|shell|sql}\n%x\n#+end_source\n" :clock-in t :clock-resume t)
      ("j" "Journal" entry
       (file+olp+datetree kc/diary-file)
-      "* %?
+      "* %(cool-date)
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :Category: %^{Entry type|Bible|Note|Journal}
-:END:" :clock-in t :clock-resume t)
+:END:
+%?" :clock-in t :clock-resume t)
      ("n" "Note" entry
       (file kc/notes-file)
       "* %? :NOTE:
