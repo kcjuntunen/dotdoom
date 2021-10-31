@@ -38,8 +38,8 @@
 		     "Calibri")
   "My variable pitch font varies based on my OS.")
 
-(setq doom-font (font-spec :family "Victor Mono" :size 16 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family kc/vp-font :size 24))
+(setq doom-font (font-spec :family "Victor Mono" :size 14 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family kc/vp-font :size 16))
 
 (defvar org-directory-root (if at-work
 			       "C:/Users/K.C.Juntunen/OneDrive/org/"
