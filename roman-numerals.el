@@ -30,11 +30,19 @@
 			(setq n (- n (car i))))))
     (buffer-string)))
 
+(defun roman-month ()
+  "The month in Roman numerals."
+  (to-roman (nth 4 (decode-time (current-time)))))
+
+(defun roman-year ()
+  "The year in Roman numerals."
+  (to-roman (nth 5 (decode-time (current-time)))))
+
 (defun churchhill-date ()
   "The style of date I saw in `The Gathering Storm'."
   (format-time-string
    (format "%%d.%s.%%y"
-	   (to-roman (nth 4 (decode-time (current-time)))))))
+	   (roman-month))))
 
 (defun cool-date ()
   "Big, long old-timey style date."
@@ -45,7 +53,7 @@
 			(t "th"))))
     (format-time-string
      (format "%%A, the %%d%s of %%B, the year of our Lord %s" ordinal
-	     (to-roman (nth 5 (decode-time (current-time))))))))
+	     (roman-year)))))
 
 (provide 'roman-numerals)
 ;;; roman-numerals.el ends here

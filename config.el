@@ -42,13 +42,15 @@
       doom-variable-pitch-font (font-spec :family kc/vp-font :size 16))
 
 (defvar org-directory-root (if at-work
-			       "C:/Users/K.C.Juntunen/OneDrive/org/"
-			     "D:/OneDrive/org/")
+			       "D:/OneDrive/org/"
+			     "~/Dropbox/org/")
   "The root upon which to build my org directory")
+
+(load-file "~/.doom.d/roman-numerals.el")
 
 (setq org-directory
       (if not-win
-	  "~/Dropbox/org"
+	  (concat org-directory-root (roman-year))
 	(concat org-directory-root (format-time-string "%Y"))))
 
 
@@ -74,7 +76,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(load-file "~/.doom.d/roman-numerals.el")
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
 
