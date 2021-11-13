@@ -2,8 +2,8 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("ra" "→")
-    ("la" "←")
+    ("rrr" "→")
+    ("lll" "←")
     ("tu" "👍")
     ("td" "👎")
     ))
