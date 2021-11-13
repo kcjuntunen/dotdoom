@@ -99,6 +99,7 @@
 		scroll-preserve-screen-position 1
 		show-paren-delay 0
 		make-backup-files nil
+		evil-normal-state-cursor 'hbar
 		auto-save-default nil
 		inhibit-startup-screen t)
   (blink-cursor-mode))
