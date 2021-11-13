@@ -53,6 +53,13 @@
 	  (concat org-directory-root (roman-year))
 	(concat org-directory-root (format-time-string "%Y"))))
 
+(setq org-personal-root
+      (if at-work
+	  "D:/Dropbox/Dropbox/org/"
+	"~/Dropbox/org/"))
+
+(setq org-personal-directory
+      (concat org-personal-root (roman-year)))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -149,9 +156,10 @@
 	   ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
 	   ("WIP" ("WAITING") ("CANCELLED") ("HOLD"))
 	   ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
+   kc/interruption-file (concat org-directory "/unscheduled.org")
    kc/refile-file (concat org-directory "/refile.org")
-   kc/diary-file (concat org-directory "/diary.org")
-   kc/notes-file (concat org-directory "/notes.org")
+   kc/diary-file (concat org-personal-directory "/diary.org")
+   kc/notes-file (concat org-personal-directory "/notes.org")
    org-capture-templates
    '(("t" "todo" entry
       (file kc/refile-file)
@@ -173,7 +181,7 @@
 :END:" :clock-in t :clock-resume t)
      ("i" "Interuption" entry
       (file kc/refile-file)
-      "* %?
+      "* %? %T
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
@@ -193,13 +201,13 @@
 #+begin_source %^{Language|conf|csharp|powershell|sgml|shell|sql}\n%x\n#+end_source\n" :clock-in t :clock-resume t)
      ("j" "Journal" entry
       (file+olp+datetree kc/diary-file)
-      "* %(cool-date)
+      "* %? %T
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
 :Captured: %U
 :Category: %^{Entry type|Bible|Note|Journal}
 :END:
-%?" :clock-in t :clock-resume t)
+" :clock-in t :clock-resume t)
      ("n" "Note" entry
       (file kc/notes-file)
       "* %? :NOTE:
