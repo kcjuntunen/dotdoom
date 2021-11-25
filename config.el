@@ -159,7 +159,8 @@
    kc/interruption-file (concat org-directory "/unscheduled.org")
    kc/refile-file (concat org-directory "/refile.org")
    kc/diary-file (concat org-personal-directory "/diary.org")
-   kc/notes-file (concat org-personal-directory "/notes.org")
+   kc/personal-notes-file (concat org-personal-directory "/notes.org")
+   kc/notes-file (concat org-directory "/notes.org")
    org-capture-templates
    '(("t" "todo" entry
       (file kc/refile-file)
@@ -180,7 +181,7 @@
 :Prev_Loc: %K
 :END:" :clock-in t :clock-resume t)
      ("i" "Interuption" entry
-      (file kc/refile-file)
+      (file kc/interruption-file)
       "* %? %T
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
@@ -209,7 +210,7 @@
 :END:
 " :clock-in t :clock-resume t)
      ("n" "Note" entry
-      (file kc/notes-file)
+      (file kc/personal-notes-file)
       "* %? :NOTE:
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
@@ -225,7 +226,7 @@
 :Prev_Loc: %K
 :END:" :clock-in t :clock-resume t)
      ("b" "Bookmark" entry
-      (file+headline kc/notes-file "Bookmarks")
+      (file+headline kc/personal-notes-file "Bookmarks")
       "* %?\n:PROPERTIES:\n:Captured: %U\n:END:\n\n" :empty-lines 1))
    org-clock-in-switch-to-state
    (defun kc/clock-in-to-wip (kw)
