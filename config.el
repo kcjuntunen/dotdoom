@@ -161,6 +161,7 @@
    kc/diary-file (concat org-personal-directory "/diary.org")
    kc/personal-notes-file (concat org-personal-directory "/notes.org")
    kc/notes-file (concat org-directory "/notes.org")
+   kc/meetings-file (concat org-directory "/meetings.org")
    org-capture-templates
    '(("t" "todo" entry
       (file kc/refile-file)
@@ -218,10 +219,13 @@
 :Prev_Loc: %K
 :END:" :clock-in t :clock-resume t)
      ("m" "Meeting" entry
-      (file kc/notes-file)
-      "* MEETING %?
+      (file kc/meetings-file)
+      "* MEETING %? %T
 :PROPERTIES:
 :CUSTOM_ID: %(time-stamp--format \"%Y%m%d%H%M\" (org-read-date nil t \"+0d\"))
+:Request: Not billable
+:ClientAccount: %^{ClientAccount}
+:TradingPartnerAccount: n/a
 :Captured: %U
 :Prev_Loc: %K
 :END:" :clock-in t :clock-resume t)
