@@ -38,7 +38,7 @@
 		     "Calibri")
   "My variable pitch font varies based on my OS.")
 
-(setq doom-font (font-spec :family "Victor Mono" :size 14 :weight 'semi-bold)
+(setq doom-font (font-spec :family "Cascadia Code" :size 16 :weight 'semilight)
       doom-variable-pitch-font (font-spec :family kc/vp-font :size 16))
 
 (defvar org-directory-root (if at-work
@@ -421,6 +421,7 @@
     (switch-to-buffer "*Org Agenda*"))
    (t (org-agenda nil "a"))))
 
+(define-key global-map (kbd "<f6>") '+org-capture/open-frame)
 (define-key global-map (kbd "<f5>") 'kc/org-check-agenda)
 
 (defun load-personal-file ()
@@ -444,6 +445,8 @@
 
 (load-personal-file)
 (add-missing-info-dir)
+
+(menu-bar-mode t)
 
 (load-file (file-truename "~/.doom.d/abbrevs.el"))
 (load-file (concat (file-truename "~/.doom.d/york-mode.el")))
